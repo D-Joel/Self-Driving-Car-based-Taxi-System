@@ -1,0 +1,36 @@
+
+
+.body{
+
+    background-image: url(w-1.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;		
+    background-size: cover;
+}
+
+
+
+
+.jumbotron{
+    padding-top:20px !important;
+    padding-bottom: 22x !important;
+    opacity: 0.9;
+    margin: 70px auto;
+    height: stretch-content;
+    width: 65%;
+    justify-content: center;
+}
+.h1{
+  color: red;
+}
+
+.center{
+	margin: 5;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+

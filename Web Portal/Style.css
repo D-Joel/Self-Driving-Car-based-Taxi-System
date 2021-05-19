@@ -1,0 +1,18 @@
+body{
+    background-image: url(yellow-cabs-shutterstock.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+.jumbotron{
+    padding-top:10px !important;
+    padding-bottom: 1px !important;
+    opacity: 0.9;
+    margin: 50px auto;
+    height: fit-content;
+    width: 67%;
+    justify-content: center;
+}
+
