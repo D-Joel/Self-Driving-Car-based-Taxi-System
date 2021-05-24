@@ -1,46 +1,92 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-  	<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="orderConfirm.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Autonomous Cabs</title>
-
-    <link rel="stylesheet" href="orderConfirm.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <meta charset="utf-8">
     <title></title>
-    
-
+  </head>
   <body>
-  	   
-    <div class="jumbotron">
-         <h1 style="text-align: center;">Booking Confirmation</h1>
-         <h2 style="text-align: center;">Your Drive is Confirmed </h2>
-         <h2 style="display:inline;">Your OTP is : </h2>
-         <h2 id = "autoT" style= " display:inline;"></h2>
+    <div class="orderContainer">
+      <p class= "inside_container">Your Drive is Confirmed   </p>
+      <p class= "inside_container"id="otp">Your OTP is : 78437958</p>
+      <p class= "inside_container"id="carNo">Your Car No is </p>
 
-         <form action="">
-    	<div class="form-group row center" >
-                <button type="submit" class="btn btn-primary mb-2" >Locate on MAP</button>
-    	</div> 
     </div>
 
-</form>
-</form>
-
   </body>
+  <script type="text/javascript">
+  document.getElementById("otp").innerHTML = "Your OTP is : "+Math.floor(1000 + Math.random() * 9000);
+  document.getElementById("carNo").innerHTML = "Your Car is : AP"+Math.floor(10 + Math.random() * 90)+"EC"+Math.floor(10 + Math.random() * 90);
 
-  <script src="https://randojs.com/1.0.0.js"></script>
-        <script>
-            function showRandomNumber(){
-                document.getElementById("autoT").innerHTML = rando(345678, 999999);
-                
-            }
-            window.onload = showRandomNumber();
-        </script>
+  //alert(Math.floor(1000 + Math.random() * 9000))
+
+  </script>
+  <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 60vh;
+        width : 500px;
+        margin-left: -40px;
+        display: flex;
+        justify-content: center;
+        border-radius: 10px;
+        box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
+    <script>
+      // In this example, we center the map, and add a marker, using a LatLng object
+      // literal instead of a google.maps.LatLng object. LatLng object literals are
+      // a convenient way to add a LatLng coordinate and, in most cases, can be used
+      // in place of a google.maps.LatLng object.
+      let map;
+
+      function initMap() {
+        const mapOptions = {
+          zoom: 8,
+          center: { lat: 15.759107, lng: 78.037598 },
+        };
+        map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        const marker = new google.maps.Marker({
+          // The below line is equivalent to writing:
+          // position: new google.maps.LatLng(-34.397, 150.644)
+          position: { lat: 15.759107, lng:  78.037598 },
+          map: map,
+        });
+        // You can use a LatLng literal in place of a google.maps.LatLng object when
+        // creating the Marker object. Once the Marker object is instantiated, its
+        // position will be available as a google.maps.LatLng object. In this case,
+        // we retrieve the marker's position using the
+        // google.maps.LatLng.getPosition() method.
+        const infowindow = new google.maps.InfoWindow({
+          content: "<p>Marker Location:" + marker.getPosition() + "</p>",
+        });
+        google.maps.event.addListener(marker, "click", () => {
+          infowindow.open(map, marker);
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div class ="mapContainer">
+      <h1 class= "heading">Your Vechile Current Location</h1>
+    <div id="map"></div>
+  </div>
+
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD136hCORfJslvxYaoUHeIkUtZ72tY41q8&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
 </html>
